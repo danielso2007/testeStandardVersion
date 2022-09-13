@@ -1,6 +1,6 @@
 {
   "name": "testeStandardVersion",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Projeto com ferramentas para verificação de estilo de código, análise estática de código e cobertura de testes.",
   "scripts": {
     "release": "standard-version",
