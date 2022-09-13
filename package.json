@@ -1,0 +1,38 @@
+{
+  "name": "testeStandardVersion",
+  "version": "0.0.0",
+  "description": "Projeto com ferramentas para verificação de estilo de código, análise estática de código e cobertura de testes.",
+  "scripts": {
+    "release": "standard-version",
+    "test": "mvn -q test -P test"
+  },
+  "standard-version": {
+    "scripts": {
+      "postbump": "node set-pom-version.js",
+      "postcommit": "git add pom.xml && git commit --amend --no-edit"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielso2007/testeStandardVersion.git"
+  },
+  "keywords": [
+    "virtual",
+    "library",
+    "API",
+    "REST",
+    "Java",
+    "Spring",
+    "SpringBoot",
+    "Test"
+  ],
+  "author": "Daniel Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielso2007/testeStandardVersion/issues"
+  },
+  "homepage": "https://github.com/danielso2007/testeStandardVersion#readme",
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
+}

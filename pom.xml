@@ -1,0 +1,314 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>br.com.creationalpatterns</groupId>
+    <artifactId>PadraoCriacional</artifactId>
+    <version>0.0.1</version>
+    <name>Padrões Criacionais</name>
+    <description>Padrões de projetos criacionais</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+
+        <!-- Tests -->
+        <junit.utReportFolder>${project.basedir}/target/test</junit.utReportFolder>
+        <skip-tests>false</skip-tests>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <junit-jupiter-version>5.9.0</junit-jupiter-version>
+        <maven-failsafe-plugin-version>2.22.2</maven-failsafe-plugin-version>
+        <mockito-core-version>4.8.0</mockito-core-version>
+        <mockito-junit-jupiter-version>4.8.0</mockito-junit-jupiter-version>
+        <mockito-inline-version>4.8.0</mockito-inline-version>
+
+        <!-- Checkstyle -->
+        <checkstyle.local>config/checkstyle.xml</checkstyle.local>
+        <maven.checkstyle.plugin.version>3.2.0</maven.checkstyle.plugin.version>
+
+        <!-- PMD -->
+        <maven.pmd.plugin.version>3.19.0</maven.pmd.plugin.version>
+        <maven.jxr.plugin.version>3.3.0</maven.jxr.plugin.version>
+
+        <!-- Java Code Coverage Library -->
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+        <jacoco.utReportFile>${jacoco.utReportFolder}/jacoco.exec</jacoco.utReportFile>
+        <jacoco.utReportFolder>${project.build.directory}/jacoco/test</jacoco.utReportFolder>
+        <code.coverage.ratio>0.99</code.coverage.ratio>
+    </properties>
+
+    <dependencies>
+        <!-- Junit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>${mockito-inline-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>package</defaultGoal>
+        <directory>${basedir}/target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Checkstyle -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version}</version>
+                <configuration>
+                    <configLocation>${checkstyle.local}</configLocation>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <failOnViolation>true</failOnViolation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- PMD source code analyzer -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven.pmd.plugin.version}</version>
+                <configuration>
+                    <linkXRef>true</linkXRef>
+                    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin-version}</version>
+                <configuration>
+                    <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+                    <!-- Força a ordem alfabética para ter uma construção reproduzível -->
+                    <runOrder>alphabetical</runOrder>
+                    <includes>
+                        <include>**/*IT*</include>
+                        <include>**/*IntTest*</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!-- The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <!-- Força a ordem alfabética para ter uma construção reproduzível -->
+                    <runOrder>alphabetical</runOrder>
+                    <reportsDirectory>${junit.utReportFolder}</reportsDirectory>
+                    <skipTests>${skip-tests}</skipTests>
+                    <workingDirectory>${project.build.directory}</workingDirectory>
+                    <trimStackTrace>false</trimStackTrace>
+                    <forkCount>6</forkCount>
+                    <threadCount>6</threadCount>
+                    <reuseForks>false</reuseForks>
+                    <argLine>@{argLine} -Xmx512m -XX:MaxPermSize=512m --illegal-access=permit</argLine>
+                    <parallel>classes</parallel>
+                    <perCoreThreadCount>true</perCoreThreadCount>
+                    <useUnlimitedThreads>false</useUnlimitedThreads>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Java Code Coverage Library -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <configuration>
+                    <destfile>${jacoco.utReportFile}</destfile>
+                    <datafile>${jacoco.utReportFile}</datafile>
+                    <rules>
+                        <rule>
+                            <limits>
+                                <limit>
+                                    <counter>LINE</counter>
+                                    <value>COVEREDRATIO</value>
+                                    <minimum>${code.coverage.ratio}</minimum>
+                                </limit>
+                            </limits>
+                        </rule>
+                    </rules>
+                    <excludes>
+                        <exclude>br/com/criacionais/abstractfactory/apple/Client.class</exclude>
+                        <exclude>br/com/criacionais/abstractfactory/app/service/Client.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- PMD source code analyzer -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${maven.pmd.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <!-- Checkstyle -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version</version>
+                <configuration>
+                    <configLocation>${checkstyle.local}</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Usado no PMD source code analyzer -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${maven.jxr.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <!-- PMD source code analyzer -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven.pmd.plugin.version}</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>/rulesets/java/braces.xml</ruleset>
+                        <ruleset>/rulesets/java/naming.xml</ruleset>
+                        <ruleset>/rulesets/java/codesize.xml</ruleset>
+                        <ruleset>/rulesets/java/comments.xml</ruleset>
+                        <ruleset>/rulesets/java/coupling.xml</ruleset>
+                        <ruleset>/rulesets/java/design.xml</ruleset>
+                        <ruleset>/rulesets/java/empty.xml</ruleset>
+                        <ruleset>/rulesets/java/finalizers.xml</ruleset>
+                        <ruleset>/rulesets/java/imports.xml</ruleset>
+                        <ruleset>/rulesets/java/javabeans.xml</ruleset>
+                        <ruleset>/rulesets/java/naming.xml</ruleset>
+                        <ruleset>/rulesets/java/optimizations.xml</ruleset>
+                        <ruleset>/rulesets/java/strictexception.xml</ruleset>
+                        <ruleset>/rulesets/java/strings.xml</ruleset>
+                        <ruleset>/rulesets/java/unusedcode.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+    <developers>
+        <developer>
+            <id>danielso2007</id>
+            <name>Daniel Oliveira</name>
+            <email>danielso2007@gmail.com</email>
+            <organization>Em casa</organization>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <comments>
+                Copyright 2017-2019 the original author or authors.
+
+                Licensed under the Apache License, Version 2.0 (the "License");
+                you may not use this file except in compliance with the License.
+                You may obtain a copy of the License at
+
+                https://www.apache.org/licenses/LICENSE-2.0
+
+                Unless required by applicable law or agreed to in writing, software
+                distributed under the License is distributed on an "AS IS" BASIS,
+                WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+                implied.
+                See the License for the specific language governing permissions and
+                limitations under the License.
+            </comments>
+        </license>
+    </licenses>
+</project>
