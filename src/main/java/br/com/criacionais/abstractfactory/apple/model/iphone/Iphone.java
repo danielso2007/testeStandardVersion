@@ -3,6 +3,7 @@ package br.com.criacionais.abstractfactory.apple.model.iphone;
 import br.com.criacionais.abstractfactory.apple.factory.abstractfactory.CountryRulesAbstractFactory;
 
 public abstract class Iphone {
+
     CountryRulesAbstractFactory rules;
 
     public Iphone(CountryRulesAbstractFactory rules) {
