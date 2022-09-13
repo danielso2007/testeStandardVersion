@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/danielso2007/testeStandardVersion/compare/v0.0.1...v0.0.2) (2022-09-13)
+
+
+### Features
+
+* **certificate:** Ajustar mensagem da classe BrazilianCertificate ([#8](https://github.com/danielso2007/testeStandardVersion/issues/8)) ([baf5283](https://github.com/danielso2007/testeStandardVersion/commit/baf5283a5fdd1876be4503338aa3b581ce67f5e2))
+
 ### [0.0.1](https://github.com/danielso2007/testeStandardVersion/compare/v0.0.0...v0.0.1) (2022-09-13)
 
 
