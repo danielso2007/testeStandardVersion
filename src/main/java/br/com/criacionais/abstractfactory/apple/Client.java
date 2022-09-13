@@ -11,7 +11,6 @@ public class Client {
 
     public static void main(String[] args) {
         CountryRulesAbstractFactory rules = new BrazilianRulesAbstractFactory();
-        // CountryRulesAbstractFactory rules = new USRulesAbstractFactory();
 
         IphoneFactory genXfactory = new IphoneXfactory(rules);
         IphoneFactory gen11Factory = new Iphone11Factory(rules);
