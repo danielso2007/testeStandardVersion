@@ -67,7 +67,6 @@ jobs:
     - name: Test com verificação de cobertura
       run: |
         mvn -q -am clean verify
-        bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }}
   Build:
     needs: Test
     runs-on: ubuntu-latest
