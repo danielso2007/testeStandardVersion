@@ -1,3 +1,5 @@
+[![Teste Standard Version](https://github.com/danielso2007/testeStandardVersion/actions/workflows/maven-publish.yml/badge.svg?branch=main)](https://github.com/danielso2007/testeStandardVersion/actions/workflows/maven-publish.yml)
+
 ![GitHub package version](https://img.shields.io/github/package-json/v/danielso2007/testeStandardVersion.svg)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/danielso2007/testeStandardVersion.svg)](https://github.com/danielso2007/testeStandardVersion/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/danielso2007/testeStandardVersion.svg)](https://github.com/danielso2007/testeStandardVersion/issues?q=is%3Aopen+is%3Aissue)
