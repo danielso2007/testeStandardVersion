@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1](https://github.com/danielso2007/testeStandardVersion/compare/v0.0.0...v0.0.1) (2022-09-13)
+
+
+### Features
+
+* criar um novo telefone na pacote apple ([#6](https://github.com/danielso2007/testeStandardVersion/issues/6)) ([2cffb7e](https://github.com/danielso2007/testeStandardVersion/commit/2cffb7e051cecb2498c87607283290bc2f8abbb4))
+
+
+### Bug Fixes
+
+* **model:** corrigir classe Iphone do pacote model ([#7](https://github.com/danielso2007/testeStandardVersion/issues/7)) ([a3806bf](https://github.com/danielso2007/testeStandardVersion/commit/a3806bfb8017c80174f7beee83428f1c078bf374))
+
 ### [0.0.1](https://github.com/danielso2007/testeStandardVersion/compare/v0.0.2...v0.0.1) (2022-09-13)
 
 ### [0.0.2](https://github.com/danielso2007/testeStandardVersion/compare/v0.0.0...v0.0.2) (2022-09-13)
