@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.creationalpatterns</groupId>
     <artifactId>PadraoCriacional</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1</version>
     <name>Padrões Criacionais</name>
     <description>Padrões de projetos criacionais</description>
 
